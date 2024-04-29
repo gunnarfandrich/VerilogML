@@ -7,6 +7,7 @@ import sys
 import os
 import pandas as pd
 import numpy as np
+import get_power
 
 
 helpMessage = "Pass the file or directory name to be evaluated following the name of the python file!"
@@ -22,7 +23,7 @@ def Avg(lst):
 
 # Supported File Extensions
 supportedExtensions = [
-                        ".vhd",
+                        #".vhd",
                         ".v"
                         ]
 
@@ -195,14 +196,24 @@ if name == "-d" or name == "--d" or name == "-directory":
         for file in files:
             if os.path.splitext(file)[1] in supportedExtensions:
                 #print("Current File: " + os.path.join(root, file))
-                
+
+                tempDf = getFeatures(os.path.join(root, file), file)
+
+				
+
+
+                # add power value
+                tempDf['Dynamic Power'] = get_power.caleScript(script="dc_power.tcl", home_dir="~/Desktop/VerilogML/", design_path=os.path.join(root, file), design_name=file.split(".")[0])
+
+
+		# combine dataframe
                 df = pd.concat([df, getFeatures(os.path.join(root, file), file)])
                 
                 # replace NaN with zeroes
                 df = df.replace(np.nan, 0)
                 
                 #print(df)
-                
+
     
     #integers only in dataframe
     df = df.apply(np.int64)
