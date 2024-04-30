@@ -1,19 +1,20 @@
 import os
 
 def caleScript(script, home_dir, design_path, design_name, design_dir):
-	#script = "dc_power.tcl"
+	
+        # Example of each variable for debugging or manual calling of script
+        #script = "dc_power.tcl"
 	#home_dir = "~/Desktop/VerilogML/"
 	#design_dir = "~/Desktop/VerilogML/ip-cores"
 	#design_name = "s38584"
 
 
-
+        # Execute TCL script with Synopsis Design Compiler
 	os.system("HOME_DIRECTORY="+home_dir+" DESIGN_DIRECTORY="+design_dir+" DESIGN_NAME="+design_name+" dc_shell-t -f "+script)
-
-	#print(+design_path+)
 
 	adj_num = 0.0
 
+        # Open .rpt file and extact Total Dynamic Power
 	with open(design_name+'_power.rpt', 'r') as f:
 
 		adj_num = 0.0
@@ -44,10 +45,8 @@ def caleScript(script, home_dir, design_path, design_name, design_dir):
 		        else:
 		            print("unknown unit")
 		            quit()
-		        #print(line[0])
-		        #print(str(adj_num))
 		        break
 
-	#print("finished")
+	# return power value with units
 	return adj_num
 		                
