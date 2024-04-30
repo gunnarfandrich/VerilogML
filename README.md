@@ -51,7 +51,10 @@ After downloading all your models, perform feature extraction and power analysis
   python metrics.py -d ip-cores
   ```
 
-Currently, the script returns a pandas DataFrame. This DataFrame is intended to be used in the future to estimate power analysis on RTL designs after a machine learning model is created and trained on collected RTL IPs.
+Currently, the script returns a pandas DataFrame. The dataframe will be exported as "out.csv" to the working directory upon the script finishing execution.
+
+
+This DataFrame is intended to be used in the future to estimate power analysis on RTL designs after a machine learning model is created and trained on collected RTL IPs.
 
 ## Known Issues and Bugs
 * Testbenches return all zero values (to be expected) in the dataframe
@@ -59,7 +62,7 @@ Currently, the script returns a pandas DataFrame. This DataFrame is intended to 
 <!-- Planned Features -->
 ## Planned Features
 * Use Machine Learning to Estimate Power Consumption of RTL designs, WITHOUT, the need for Synopsis Design Compiler or any other proprietary, expensive, software.
-* Export collected dataframe to xlsx, txt file, or similar so the script doesn't need to be ran multiple times for designs with no changes
+* ~~Export collected dataframe to xlsx, txt file, or similar so the script doesn't need to be ran multiple times for designs with no changes~~
 * C and C++ Support
 * Automatically identify and ignore testbench files
 * TBD!!!
