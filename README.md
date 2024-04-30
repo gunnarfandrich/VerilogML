@@ -22,10 +22,11 @@ This tool expects users to have access to Synopsis Design Compiler. All other re
   ```sh
   pip install pandas numpy
   ```
-On the University of Florida ECE server, these packages are already present. Simply source your environment properly to access them:
+On the University of Florida ECE server, you must source your environment, and then install the required packages:
 
   ```sh
   source /apps/anaconda/settings
+  pip install pandas numpy
   ```
 
 A reference library is required for the .tcl script to run in Synopsis. This file is zipped and included in the repo. Extract the file before proceeding:
