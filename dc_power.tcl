@@ -1,4 +1,7 @@
-# Cale Woodward
+# TCL Script to extract total dynamic power and other metrics from RTL file
+# March 20 2024, By: Cale Woodward
+# Last Updated: March 29, 2024
+
 try {
     set home_directory [getenv HOME_DIRECTORY]
 } on error {msg} {
@@ -51,6 +54,6 @@ uniquify -force
 ungroup -all -flatten
 
 # report power
-report_power        >> ${design_name}_power.rpt
+report_power        >> ./cache/${design_name}_power.rpt
 
 exit
