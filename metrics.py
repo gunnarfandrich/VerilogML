@@ -221,3 +221,6 @@ if name == "-d" or name == "--d" or name == "-directory":
                 print(df)
     
     #print(df)
+
+    # export to csv
+    df.to_csv('out.csv', index=True) 
