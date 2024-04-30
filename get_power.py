@@ -1,3 +1,7 @@
+# Python Script to execute TCL script and extract total dynamic power from TCL script .rpt output
+# March 20 2024, By: Cale Woodward, Gunnar Fandrich
+# Last Updated: March 29, 2024
+
 import os
 
 def caleScript(script, home_dir, design_path, design_name, design_dir):
