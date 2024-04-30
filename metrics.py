@@ -215,28 +215,40 @@ if name == "--debug":
 if name == "-d" or name == "--d" or name == "-directory":
     directory = sys.argv[2]
     
+    cwd = os.getcwd()
+    
     #create empty dataframe for storage
     df = pd.DataFrame()
     
     for root, dirs, files in os.walk(directory):
         for file in files:
             if os.path.splitext(file)[1] in supportedExtensions:
-                print("Current File: " + os.path.join(root, file))
-
+                
                 moduleName, tempDf = getFeatures(os.path.join(root, file), file)
+
+
+                #print("Current File: " + os.path.join(root, file))		
+                print("Current Design Dir:" , os.path.join(cwd,root))
+                print("Current Design Path: " , os.path.join(root,file))
+                print("Current Design Name: " , moduleName)
+
 
                 #print(file.split(".")[0])
 
                 #print(moduleName)				
 
-                print("Dir is:" , root)
 
 
                 # add power value
-                tempDf['Dynamic Power'] = get_power.caleScript(script="dc_power.tcl", home_dir="~/Desktop/VerilogML/", design_dir=root, design_path=os.path.join(root, file), design_name=moduleName)
+                tempDf['Dynamic Power'] = get_power.caleScript(
+                                                               script="dc_power.tcl",
+                                                               home_dir=cwd,
+                                                               design_dir=os.path.join(cwd,root),
+                                                               design_path=os.path.join(root, file),
+                                                               design_name=moduleName)
 
 
-                print(tempDf)
+               
 
 		# combine dataframe
                 #df = pd.concat([df, getFeatures(os.path.join(root, file), file)[1]])
@@ -249,7 +261,7 @@ if name == "-d" or name == "--d" or name == "-directory":
                 # replace NaN with zeroes
                 df = df.replace(np.nan, 0)
                 
-                #print(df)
+                print(df)
 
     
     #integers only in dataframe

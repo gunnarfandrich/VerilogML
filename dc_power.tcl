@@ -8,9 +8,9 @@ try {
 }
 
 try {
-    set design_path [getenv DESIGN_PATH]
+    set design_directory [getenv DESIGN_DIRECTORY]
 } on error {msg} {
-    puts "ERROR: missing DESIGN_PATH environment variable"
+    puts "ERROR: missing DESIGN_DIRECTORY environment variable"
     puts "Message: $msg"
     exit 1
 }
@@ -29,15 +29,15 @@ set target_library  [list saed90nm_typ.db]
 set link_library    [list saed90nm_typ.db]
 
 # working directory
-define_design_lib work -path ./work
+define_design_lib work -path ./{$design_name}_work
 
 # read files
-analyze -format verilog ${design_path}
+#analyze -format verilog ${design_path}
+analyze -autoread -recursive ${design_directory} -top ${design_name}
 
 # set top module and elaborate
-set top ${design_name}
-elaborate -lib work $top
-current_design $top
+elaborate -lib work ${design_name}
+current_design ${design_name}
 
 # resolve design differences and set constraints
 link
@@ -52,6 +52,5 @@ ungroup -all -flatten
 
 # report power
 report_power        >> ${design_name}_power.rpt
-
 
 exit
