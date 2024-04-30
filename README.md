@@ -53,6 +53,9 @@ After downloading all your models, perform feature extraction and power analysis
 
 Currently, the script returns a pandas DataFrame. This DataFrame is intended to be used in the future to estimate power analysis on RTL designs after a machine learning model is created and trained on collected RTL IPs.
 
+## Known Issues and Bugs
+* Testbenches return all zero values (to be expected) in the dataframe
+
 <!-- Planned Features -->
 ## Planned Features
 * Use Machine Learning to Estimate Power Consumption of RTL designs, WITHOUT, the need for Synopsis Design Compiler or any other proprietary, expensive, software.
