@@ -1,6 +1,6 @@
 # Python Script to extract features from a given python file or directory
 # March 9 2024, By: Gunnar Fandrich
-# Last Updated: March 9, 2024
+# Last Updated: March 29, 2024
 
 #import pyverilog
 import sys
@@ -149,7 +149,7 @@ try:
     name = sys.argv[1]
 except:
     print(helpMessage)
-    print("Example: fileName.py myVerilog.v")
+    print("Example: metrics.py -d ip-cores")
     print()
     sys.exit()
 
@@ -173,7 +173,14 @@ if name == "--debug":
     
     
 if name == "-d" or name == "--d" or name == "-directory":
-    directory = sys.argv[2]
+    try:
+        directory = sys.argv[2]
+    except:
+        print(helpMessage)
+        print("Example: metrics.py -d ip-cores")
+        print()
+        sys.exit()
+
     
     cwd = os.getcwd()
     
