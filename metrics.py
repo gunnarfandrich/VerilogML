@@ -2,7 +2,6 @@
 # March 9 2024, By: Gunnar Fandrich
 # Last Updated: March 29, 2024
 
-#import pyverilog
 import sys
 import os
 import pandas as pd
