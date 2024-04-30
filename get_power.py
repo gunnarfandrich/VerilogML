@@ -14,8 +14,13 @@ def caleScript(script, home_dir, design_path, design_name, design_dir):
 
 	adj_num = 0.0
 
+	# create temporary directory to store .rpt files
+	if not os.path.exists('./cache/'):
+		os.makedirs('./cache/')
+
+
         # Open .rpt file and extact Total Dynamic Power
-	with open(design_name+'_power.rpt', 'r') as f:
+	with open('./cache/' + design_name + '_power.rpt', 'r') as f:
 
 		adj_num = 0.0
 		for line in f:
