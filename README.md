@@ -66,7 +66,7 @@ Currently, the script returns a pandas DataFrame. This DataFrame is intended to 
 
 ## License and Use
 Feel free to use this library for your own research and work. For pull requests, message me (I do not expect anyone to PR but I've seen crazier things happen).
-(Follow GPL 3.0 LLicense terms)
+(Follow GPL 3.0 License terms)
 
 <!-- Authors -->
 ## Authors
