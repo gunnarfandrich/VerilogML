@@ -58,6 +58,7 @@ Currently, the script returns a pandas DataFrame. This DataFrame is intended to 
 * Use Machine Learning to Estimate Power Consumption of RTL designs, WITHOUT, the need for Synopsis Design Compiler or any other proprietary, expensive, software.
 * Export collected dataframe to xlsx, txt file, or similar so the script doesn't need to be ran multiple times for designs with no changes
 * C and C++ Support
+* Automatically identify and ignore testbench files
 * TBD!!!
 
 ## License and Use
