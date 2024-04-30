@@ -1,3 +1,7 @@
+# TCL Script to extract total dynamic power and other metrics from RTL file
+# March 23 2024, By: Cale Woodward, Monica Sheethal Gurakala, Venkata Shanmukha Sri Sudha Renduchintala
+# Last Updated: March 29, 2024
+
 import os
 import openpyxl
 
