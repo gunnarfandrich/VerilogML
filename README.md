@@ -28,6 +28,13 @@ On the University of Florida ECE server, these packages are already present. Sim
   source /apps/anaconda/settings
   ```
 
+A reference library is required for the .tcl script to run in Synopsis. This file is zipped and included in the repo. Extract the file before proceeding:
+
+  ```sh
+  unzip ref.zip
+  ```
+
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
