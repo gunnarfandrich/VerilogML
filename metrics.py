@@ -23,7 +23,7 @@ def Avg(lst):
 
 # Supported File Extensions
 supportedExtensions = [
-                        #".vhd",
+                        ".vhd",
                         ".v"
                         ]
 
@@ -75,12 +75,17 @@ conditionalOperators = [
 
 # check each line for the desired operators
 def getFeatures(name, fileName):
+
+    moduleName = ""
+
     with open(name) as fp:
     
         # initialize empty dictionaries to store counts of each target feature
         operatorDict = {}
         conditionalDict = {}
         sequentialStateList = []
+
+        
 
         # FLAGS
         go = 0
@@ -91,6 +96,13 @@ def getFeatures(name, fileName):
     
         for line in fp:
             #print(line)
+
+
+ 
+            if "module " in line:
+                moduleName = line.split(" ")[1]
+                moduleName = moduleName.split("(")[0]
+                print(moduleName)
             
             # ignore everything until the actual code begins
             if "always @" in line:
@@ -167,7 +179,7 @@ def getFeatures(name, fileName):
     
     #print(df_merged)
     
-    return df_merged
+    return moduleName, df_merged
     
     
     
@@ -185,6 +197,20 @@ if name == "-?" or name == "-help" or name == "--help":
     print(helpMessage)
     print()
     sys.exit()
+
+if name == "--debug":
+    print("DEBUG ACTIVE")
+    
+    debugFile = sys.argv[2]
+
+    print(get_power.caleScript(
+                               script="dc_power.tcl",
+                               home_dir="~/Desktop/VerilogML/",
+                               design_dir="~/Desktop/VerilogML/ip-cores/debug/",
+                               design_path="ip-cores/debug/",
+                               design_name="fulladd"))
+    
+    
     
 if name == "-d" or name == "--d" or name == "-directory":
     directory = sys.argv[2]
@@ -195,20 +221,31 @@ if name == "-d" or name == "--d" or name == "-directory":
     for root, dirs, files in os.walk(directory):
         for file in files:
             if os.path.splitext(file)[1] in supportedExtensions:
-                #print("Current File: " + os.path.join(root, file))
+                print("Current File: " + os.path.join(root, file))
 
-                tempDf = getFeatures(os.path.join(root, file), file)
+                moduleName, tempDf = getFeatures(os.path.join(root, file), file)
 
-				
+                #print(file.split(".")[0])
+
+                #print(moduleName)				
+
+                print("Dir is:" , root)
 
 
                 # add power value
-                tempDf['Dynamic Power'] = get_power.caleScript(script="dc_power.tcl", home_dir="~/Desktop/VerilogML/", design_path=os.path.join(root, file), design_name=file.split(".")[0])
+                tempDf['Dynamic Power'] = get_power.caleScript(script="dc_power.tcl", home_dir="~/Desktop/VerilogML/", design_dir=root, design_path=os.path.join(root, file), design_name=moduleName)
 
+
+                print(tempDf)
 
 		# combine dataframe
-                df = pd.concat([df, getFeatures(os.path.join(root, file), file)])
+                #df = pd.concat([df, getFeatures(os.path.join(root, file), file)[1]])
                 
+                df = pd.concat([df, tempDf])
+                
+
+
+
                 # replace NaN with zeroes
                 df = df.replace(np.nan, 0)
                 
