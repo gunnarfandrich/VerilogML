@@ -53,16 +53,20 @@ After downloading all your models, perform feature extraction and power analysis
 
 Currently, the script returns a pandas DataFrame. This DataFrame is intended to be used in the future to estimate power analysis on RTL designs after a machine learning model is created and trained on collected RTL IPs.
 
+## Known Issues and Bugs
+* Testbenches return all zero values (to be expected) in the dataframe
+
 <!-- Planned Features -->
 ## Planned Features
 * Use Machine Learning to Estimate Power Consumption of RTL designs, WITHOUT, the need for Synopsis Design Compiler or any other proprietary, expensive, software.
 * Export collected dataframe to xlsx, txt file, or similar so the script doesn't need to be ran multiple times for designs with no changes
 * C and C++ Support
+* Automatically identify and ignore testbench files
 * TBD!!!
 
 ## License and Use
 Feel free to use this library for your own research and work. For pull requests, message me (I do not expect anyone to PR but I've seen crazier things happen).
-(Follow GPL 3.0 LLicense terms)
+(Follow GPL 3.0 License terms)
 
 <!-- Authors -->
 ## Authors
