@@ -65,7 +65,7 @@ This DataFrame is intended to be used in the future to estimate power analysis o
 * Use Machine Learning to Estimate Power Consumption of RTL designs, WITHOUT, the need for Synopsis Design Compiler or any other proprietary, expensive, software.
 * ~~Export collected dataframe to xlsx, txt file, or similar so the script doesn't need to be ran multiple times for designs with no changes~~ Commit: e6c838a
 * C and C++ Support
-* Automatically identify and ignore testbench files
+* Automatically identify and ignore testbench as well as duplicate (already processed) designs
 * TBD!!!
 
 ## License and Use
